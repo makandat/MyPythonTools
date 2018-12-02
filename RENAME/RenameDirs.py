@@ -3,13 +3,13 @@
 from Py365Lib import Common, Text, FileSystem as fs
 
 # 特定文字を置き換える。
-def rename(fp) :
-    if fs.isDirectory(fp) :
-        result = Text.replace('[', '', fp)
-        result = Text.replace(']', '', result)
-    else :
+def rename(fp, pr=True) :
+    if pr :
         result = Text.replace('[', '(', fp)
         result = Text.replace(']', ')', result)
+    else :
+        result = Text.replace('[', '', fp)
+        result = Text.replace(']', '', result)
     result = Text.replace('#', '_', result)
     result = Text.replace("'", "", result)
     return result
@@ -31,14 +31,14 @@ def renameDirs(dir0) :
     if count == 0 :
         for dir1 in dirs :
             dirs1 = fs.listDirectories(dir1)
-                for dir2 in dirs1 :
-                    nd = rename(dp)
-                    if Text.contain(' ', dp) :
-                        dp = "'" + dp + "'"
-                        nd = "'" + nd + "'"
-                    if dp != nd :
-                        lines += f"mv -v {dp} {nd}\n"
-                        count += 1
+            for dp in dirs1 :
+                nd = rename(dp, True)
+                if Text.contain(' ', dp) :
+                    dp = "'" + dp + "'"
+                    nd = "'" + nd + "'"
+                if dp != nd :
+                    lines += f"mv -v {dp} {nd}\n"
+                    count += 1
     return lines
 
 # 対象のディレクトリを得る。
