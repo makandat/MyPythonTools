@@ -16,6 +16,7 @@ def rename(fp) :
 
 # ディレクトリの名前変更コマンドを作成する。
 def renameDirs(dir0) :
+    count = 0
     lines = "#!/bin/bash\n"
     dirs = fs.listDirectories(dir0)
     for dp in dirs :
@@ -25,17 +26,29 @@ def renameDirs(dir0) :
             nd = "'" + nd + "'"
         if dp != nd :
             lines += f"mv -v {dp} {nd}\n"
-        lines += renameDirs(dp)
+            count += 1
+    # １件もない場合はサブディレクトリを見てみる。
+    if count == 0 :
+        for dir1 in dirs :
+            dirs1 = fs.listDirectories(dir1)
+                for dir2 in dirs1 :
+                    nd = rename(dp)
+                    if Text.contain(' ', dp) :
+                        dp = "'" + dp + "'"
+                        nd = "'" + nd + "'"
+                    if dp != nd :
+                        lines += f"mv -v {dp} {nd}\n"
+                        count += 1
     return lines
 
 # 対象のディレクトリを得る。
 if Common.count_args() < 2 :
-    Common.stop("対象のディレクトリとスクリプトファイルの名前(パス)を指定してください。")
+    Common.stop(9, "対象のディレクトリとスクリプトファイルの保存先(パス)を指定してください。")
 
 # 対象のディレクトリ
 dir0 = Common.args()[0]
 if not fs.isDirectory(dir0) :
-    Common.stop(f"{dir0} はディレクトリとして存在しません。")
+    Common.stop(9, f"{dir0} はディレクトリとして存在しません。")
 
 # スクリプトファイルのパス
 savePath = Common.args()[1]
