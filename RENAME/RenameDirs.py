@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#  ディレクトリやファイル名で特殊な文字が使われていたら削除または置き換えて名前を変更する。
+#  ディレクトリで特殊な文字が使われていたら削除または置き換えて名前を変更する。
 from Py365Lib import Common, Text, FileSystem as fs
 
 # 特定文字を置き換える。
@@ -13,7 +13,20 @@ def rename(fp) :
     result = Text.replace('#', '_', result)
     result = Text.replace("'", "", result)
     return result
-    
+
+# ディレクトリの名前変更コマンドを作成する。
+def renameDirs(dir0) :
+    lines = "#!/bin/bash\n"
+    dirs = fs.listDirectories(dir0)
+    for dp in dirs :
+        nd = rename(dp)
+        if Text.contain(' ', dp) :
+            dp = "'" + dp + "'"
+            nd = "'" + nd + "'"
+        if dp != nd :
+            lines += f"mv -v {dp} {nd}\n"
+        lines += renameDirs(dp)
+    return lines
 
 # 対象のディレクトリを得る。
 if Common.count_args() < 2 :
@@ -27,27 +40,9 @@ if not fs.isDirectory(dir0) :
 # スクリプトファイルのパス
 savePath = Common.args()[1]
 
-lines = "#!/bin/bash\n"
 
-# ファイル一覧を得る。
-files = fs.listFiles(dir0)
-for fp in files :
-    nf = rename(fp)
-    if Text.contain(' ', fp) :
-        fp = "'" + fp + "'"
-        nf = "'" + nf + "'"
-    if fp != nf :
-        lines += "mv -v {0} {1}\n".format(fp, nf)
-
-# ディレクトリ一覧を得る。
-dirs = fs.listDirectories(dir0)
-for dp in dirs :
-    nd = rename(dp)
-    if Text.contain(' ', dp) :
-        dp = "'" + dp + "'"
-        nd = "'" + nd + "'"
-    if dp != nd :
-        lines += f"mv -v {dp} {nd}\n"
+# ディレクトリの名前変更コマンドを作成する。
+lines = renameDirs(dir0)
 
 # スクリプトを作成する。
 try :
