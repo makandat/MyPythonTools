@@ -1,1 +1,1 @@
-select day,sum(balance) from BANKS group by day;
+select day,sum(balance) as balance from BANKS group by day;
