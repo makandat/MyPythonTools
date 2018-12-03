@@ -17,5 +17,5 @@ Common.esc_print('cyan', '日付ごとの残高一覧')
 rows = client.query("SELECT * FROM vw_balance")
 print("日付    残高")
 for row in rows :
-  print("{0}  {1,:}"row)
+  print("{0}  {1,:}".format(row[0], row[1]))
 
