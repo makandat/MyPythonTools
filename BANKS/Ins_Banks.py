@@ -16,15 +16,19 @@ if Common.count_args() < 2 :
 client = MySQL.MySQL()
 
 # SQL を作成する。
+sql = ""
 try :
-  day = DateTime.now().toString()
+  dtime = DateTime.DateTime().toString()
+  day = Text.Text(dtime).left(10)
   bank = Common.args()[0]
   balance = Decimal(Common.args()[1])
   deposit = '0'
-  if count_args() >= 3 :
+  if Common.count_args() >= 3 :
     deposit = Common.args()[2]
   sql = f"INSERT INTO BANKS(DAY, BANK, DEPOSIT, BALANCE) VALUES('{day}', '{bank}', '{deposit}', {balance})"
   client.execute(sql)
+except AttributeError :
+  Common.stop(1, "Attribute Error. " + sql)
 except Exception as e :
   Common.stop(1, e.message)
 
