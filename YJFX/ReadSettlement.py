@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#  YJFX 約定一覧読み込み
+#  YJFX 約定一覧読み込み (CSV ファイルは UTF-8 であること)
 #
 '''
 CREATE TABLE YJFX_Settle (
@@ -54,12 +54,13 @@ with open(fileName, "r") as fcsv :
     date2 = row[7]
     benefit = Decimal(row[10])
     sql = f"INSERT INTO YJFX_Settle VALUES({id}, '{currency}', '{sell}', {price2}, '{date1}', {price2}, '{date2}', {benefit})"
+    print(sql)
     client.execute(sql)
     print(sql)
 
 sql = "SELECT Sum(Benefit) FROM YJFX_Settle"
 rows = client.query(sql)
-print("Benefit = {0:d}".format(rows[0]))
+print("Benefit = {0:,}".format(rows[0][0]))
 
 print("終了")
 exit(0)
