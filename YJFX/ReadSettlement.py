@@ -59,7 +59,7 @@ with open(fileName, "r") as fcsv :
 
 sql = "SELECT Sum(Benefit) FROM YJFX_Settle"
 rows = client.query(sql)
-print("Benefit = {0:d}".format(rows[0])
+print("Benefit = {0:d}".format(rows[0]))
 
 print("終了")
 exit(0)
