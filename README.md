@@ -35,4 +35,37 @@ YJFX_Settle の内容を表示するには、ShowSettlement.py を使用する�
 10614581899,決済,ドル/円,売,112.813,10000,2018/10/30 19:28:05,2018/10/30 19:28:05,10608701209,112.8,130,
 
 
+# showa
+age.py   年齢から誕生年を表示する。
+gtos.py  元号から西暦に変換する。
+stog.py  西暦から元号に変換する。
+  詳細は showa/README.txt 参照
+
+
+# RENAME
+RenameDirs.py
+  指定したディレクトリに含まれるサブディレクトリに "[", "]" が含まれていたら "(", ")" に、"#" が含まれていたら "_" に、
+  "'" が含まれていたら "" に置き換えるような mv コマンド(複数)からなるシェルスクリプトを生成する。
+
+# BANKS
+
+Ins_Banks.py
+　下のような BANKS テーブルにデータを挿入する。
+　コマンド引数は、銀行コード、残高、口座種別(省略可能)
+　　　銀行コードの例  三井住友銀行 0009, 武蔵野銀行: 0133, 住信SBIネット銀行: 0013
+　　　口座種別　0=普通 1=外貨 2=定期 3=定期(USD)　デフォルトは 0。
+
+CREATE TABLE BANKS (
+ ID INT NOT NULL AUTO_INCREMENT,
+ DAY CHAR(10) NOT NULL, 
+ BANK VARCHAR(20) NOT NULL,
+ DEPOSIT CHAR(1) NOT NULL DEFAULT '0',
+ BALANCE DECIMAL NOT NULL, 
+ INFO VARCHAR(50),
+ PRIMARY KEY(ID)
+) CHARACTER SET=UTF8;
+
+
+show_balance.py
+　BANKS テーブルの内容を表示する。
 
