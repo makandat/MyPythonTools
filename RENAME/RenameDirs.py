@@ -21,9 +21,8 @@ def renameDirs(dir0) :
     dirs = fs.listDirectories(dir0)
     for dp in dirs :
         nd = rename(dp)
-        if Text.contain(' ', dp) :
-            dp = "'" + dp + "'"
-            nd = "'" + nd + "'"
+        dp = "'" + dp + "'"
+        nd = "'" + nd + "'"
         if dp != nd :
             lines += f"mv -v {dp} {nd}\n"
             count += 1
@@ -32,10 +31,9 @@ def renameDirs(dir0) :
         for dir1 in dirs :
             dirs1 = fs.listDirectories(dir1)
             for dp in dirs1 :
-                nd = rename(dp, True)
-                if Text.contain(' ', dp) :
-                    dp = "'" + dp + "'"
-                    nd = "'" + nd + "'"
+                nd = rename(dp, False)
+                dp = "'" + dp + "'"
+                nd = "'" + nd + "'"
                 if dp != nd :
                     lines += f"mv -v {dp} {nd}\n"
                     count += 1
