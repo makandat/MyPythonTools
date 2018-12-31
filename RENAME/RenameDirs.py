@@ -3,13 +3,9 @@
 from Py365Lib import Common, Text, FileSystem as fs
 
 # 特定文字を置き換える。
-def rename(fp, pr=True) :
-    if pr :
-        result = Text.replace('[', '(', fp)
-        result = Text.replace(']', ')', result)
-    else :
-        result = Text.replace('[', '', fp)
-        result = Text.replace(']', '', result)
+def rename(fp) :
+    result = Text.replace('[', '', fp)
+    result = Text.replace(']', '', result)
     result = Text.replace('#', '_', result)
     result = Text.replace("'", "", result)
     return result
@@ -31,7 +27,7 @@ def renameDirs(dir0) :
         for dir1 in dirs :
             dirs1 = fs.listDirectories(dir1)
             for dp in dirs1 :
-                nd = rename(dp, False)
+                nd = rename(dp)
                 dp = "'" + dp + "'"
                 nd = "'" + nd + "'"
                 if dp != nd :
