@@ -1,7 +1,9 @@
-"# gyunoya" 
+"# https://github/makandat/gyunoya" 
 
 # YJFX
-YJFX 約定履歴を MySQL に読み込む。読み込み先は下のテーブル。
+
+## ReadSettlement.py
+YJFX 約定履歴(決済のみ)を MySQL に読み込む。読み込み先は下のテーブル。
 <br />
 >    CREATE TABLE `YJFX_Settle` (<br />
 >      `id` decimal(16,0) NOT NULL,<br />
@@ -20,6 +22,8 @@ YJFX 約定履歴を MySQL に読み込む。読み込み先は下のテーブ�
 使い方
 > $ ReadSettlement.py trade_history.csv
 <br />
+
+## ShowSettlement.py
 YJFX_Settle の内容を表示するには、ShowSettlement.py を使用する。
 <br />
 約定履歴ファイルは、次のような感じである。
