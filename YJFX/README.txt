@@ -34,6 +34,12 @@ YJFX_ASSET テーブルの内容を表示する。
 使い方
   ruby show_asset.rb
 
+## show_asset_csv.rb
+YJFX_ASSET テーブルの内容を表示する。(LOAD DATA INFILE で使用可能)
+使い方
+  ruby show_asset_csv.rb
+
+
 ## ShowSettlement.py
 YJFX_Settle テーブルの内容と損益の合計を表示する。
 使い方
