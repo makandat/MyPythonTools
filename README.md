@@ -85,3 +85,8 @@ YJFX_Settle の内容を表示するには、ShowSettlement.py を使用する�
 ## show_balance.py
 　BANKS テーブルの内容を表示する。<br />
 
+
+# MySQL
+
+## Ins_Pictures.py
+画像フォルダを Pictures テーブルに一括登録する。
