@@ -90,3 +90,9 @@ YJFX_Settle の内容を表示するには、ShowSettlement.py を使用する�
 
 ## Ins_Pictures.py
 画像フォルダを Pictures テーブルに一括登録する。
+
+## Ins_Videos.py
+動画フォルダを Videos テーブルに一括登録する。
+
+## Ins_Music.py
+音楽フォルダを Music テーブルに一括登録する。
