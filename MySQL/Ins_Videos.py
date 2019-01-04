@@ -34,6 +34,7 @@ def isVideo(filePath) :
 
 # SQL を作る。
 def makeSql(filePath) :
+  filePath = FileSystem.getAbsolutePath(filePath)
   parts = Text.split('/', filePath)
   title = Text.replace("'", "''", parts[len(parts) - 2] + "/" + parts[len(parts) - 1])
   path = Text.replace("'", "''", filePath)
