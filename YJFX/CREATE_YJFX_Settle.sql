@@ -1,3 +1,4 @@
+-- YJFX 約定リスト
 CREATE TABLE `YJFX_Settle` (
   `id` decimal(16,0) NOT NULL,
   `CurrencyPair` char(7) NOT NULL,
