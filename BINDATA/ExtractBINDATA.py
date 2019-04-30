@@ -5,7 +5,7 @@ import MySQL as mysql
 import Common
 import Text
 
-SELECT = "SELECT hex(data) FROM Binaries WHERE id={0}"
+SELECT = "SELECT hex(data) FROM BINDATA WHERE id={0}"
 
 # バイナリーデータ取り出してファイル保存する。
 def extract(id:int, filePath:str) -> None:
@@ -49,9 +49,9 @@ if Common.count_args() < 2 :
 id = Common.args()[0]
 filePath = Common.args()[1]
 
-#try :
-extract(id, filePath)
-#except Exception as e :
-#  Common.esc_print("red", str(e))
+try :
+  extract(id, filePath)
+except Exception as e :
+  Common.esc_print("red", str(e))
 
 print('Done.')

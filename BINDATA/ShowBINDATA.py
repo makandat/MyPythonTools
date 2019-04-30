@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-#  Binaries テーブルの内容
+#  BINDATA テーブルの内容
 import MySQL as mysql
 import Text, Common
 from pprint import pprint
 
-SELECT = "SELECT id, title, original, datatype, isnull(data) as not_null, info FROM Binaries"
+SELECT = "SELECT id, title, original, datatype, isnull(data) as not_null, info, size FROM BINDATA"
 
 
 client = mysql.MySQL()
