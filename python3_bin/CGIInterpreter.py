@@ -16,7 +16,7 @@ INTERPRETERS = '''1: /usr/bin/env python3
 def apply(fileName, interpreter) :
     lines = fs.readLines(fileName)
     if lines[0].startswith('#!') :
-        lines[0] = "#!" + interpreter
+        lines[0] = "#!" + interpreter + "\n"
         fs.writeLines(fileName, lines)
     else :
         print("Skiped: 行の先頭にインタプリタ指定が見当たりません。" + fileName)
@@ -35,7 +35,7 @@ else :
 
 
 interpreterLines = INTERPRETERS.split('\n')
-interpreter = Text.substring(interpreterLines[interpreterNo], 3)
+interpreter = Text.substring(interpreterLines[interpreterNo - 1], 3)
 print(interpreter + " が " + fileName + " に適用されます。")
 a = Common.readline("実行しますか？ (y/n)")
 if a != 'y' :
