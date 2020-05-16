@@ -10,6 +10,8 @@ INTERPRETERS = '''1: /usr/bin/env python3
 6: C:/Apps/Strawberry/perl/bin/perl.exe
 7: /usr/bin/env ruby
 8: C:/Program Files/Ruby27-x64/bin/ruby.exe
+9: /usr/bin/env node
+10: C:/Program Files/nodejs/node.exe
 '''
 
 # ファイルにインタプリタを適用する。
