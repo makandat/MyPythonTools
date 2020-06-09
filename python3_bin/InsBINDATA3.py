@@ -3,7 +3,7 @@
 #  画像ファイルのサムネールを作成し、BINDATA テーブルに挿入する。
 #  さらに、そのサムネールを Pictures または Videos テーブル、Album テーブルに、 Music テーブル関連付ける。
 # (使用法) InsBINDATA3 画像ファイルのパス Picturesテーブルの対象id
-# (バージョン) 1.1.0
+# (バージョン) 1.2.0
 
 from PIL import Image, ImageFilter
 from Py365Lib import Common, FileSystem as fs, Text, MySQL
@@ -74,6 +74,8 @@ if Common.count_args() == 0 :
   filePath = Common.readline("画像ファイルのパスを入力します。> ")
 else :
   filePath = Common.args(0)
+
+filePath = filePath.replace("\\", "/")
 
 if Common.count_args() == 1 :
   pid = Common.readline("Pictures テーブルの対象 id を入力します。> ")
