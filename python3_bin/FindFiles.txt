@@ -1,0 +1,5 @@
+\w+\.pch$
+\w+\.obj$
+\w+\.ilk$
+\w+\.pdb$
+\w+\.idb$
