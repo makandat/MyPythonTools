@@ -21,8 +21,8 @@ for path in lines :
     title = parts[n-2]
   else :
     title = "title"
-  sql = f"INSERT INTO Videos VALUES(NULL,{album_no},'{title}','{path}','creator','series', 'mark', 'info', 0, 0, 0, NULL)"
+  sql = f"INSERT INTO Videos VALUES(NULL,{album_no},'{title}','{path}','medias','series', 'mark', 'info', 0, 0, 0, NULL)"
   print(sql)
   mysql.execute(sql)
 print("Done.")
- 
+
