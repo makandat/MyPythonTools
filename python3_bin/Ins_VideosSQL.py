@@ -5,6 +5,7 @@
 #  json ファイルの例
 '''
 {
+  "album":165
   "media":"HD-LLU3",
   "series":"アニソン",
   "mark":"アニメ",
@@ -18,12 +19,14 @@ from Py365Lib import Common, FileSystem as fs, MySQL
 if Common.count_args() < 1 :
   Common.stop("Usage : Ins_VideosSQL.py filelist [json]")
 filelist = Common.args(0)
+album = 0
 media = "media"
 series = "series"
 mark = "mark"
 info = "info"
 if Common.count_args() >= 2 :
   json = fs.readJson(Common.args(1))
+  album = json["album"]
   media = json["media"]
   series = json["series"]
   mark = json["mark"]
@@ -49,7 +52,7 @@ with open(filename, mode="w", encoding='shift_jis') as f :
     title = fs.getFileName(path)
     ext = fs.getExtension(path)
     title = title.replace(ext, "")
-    sql = f"(NULL, 0, '{title}', '{path}', '{media}', '{series}', '{mark}', '{info}', 0, 0, 0, 0, NULL)"
+    sql = f"(NULL, {album}, '{title}', '{path}', '{media}', '{series}', '{mark}', '{info}', 0, 0, 0, 0, NULL)"
   f.write(sql + ";\n")
 print("Done.")
 
