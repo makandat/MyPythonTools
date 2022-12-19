@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#  Pillow/smalls.py v.1.3.0
+#  Pillow/smalls.py v.1.4.1
 from PIL import Image, ImageFilter
 from Py365Lib import Common, FileSystem as fs
 
@@ -63,7 +63,7 @@ for f in files:
     im = im.convert('RGB')
     newsize = getImageSize(im)
     if im.size[0] > newsize[0] or im.size[1] > newsize[1] :
-      newim = im.resize(newsize, Image.LANCZOS)
+      newim = im.resize(newsize)
     else:
       newim = im
     newPath = SAVEPATH + fs.getFileName(fn)
