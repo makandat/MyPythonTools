@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
-#  CGI インタプリタ設定
+#  CGI インタプリタ設定 v1.2
 from Py365Lib import Common, FileSystem as fs, Text
 
 INTERPRETERS = '''1: /usr/bin/env python3
-2: C:/Program Files/Python3/python.exe
-3: C:/Program Files (x86)/Python37/python.exe
-4: /usr/bin/env perl
-5: C:/Perl64/bin/perl.exe
-6: C:/Apps/Strawberry/perl/bin/perl.exe
-7: /usr/bin/env ruby
-8: C:/Program Files/Ruby27-x64/bin/ruby.exe
-9: /usr/bin/env node
-10: C:/Program Files/nodejs/node.exe
+2: D:/python311/python.exe
+3: C:/perl/perl.exe
+4: D:/Ruby32-x64/bin/ruby.exe
+9: Quit
 '''
 
 # ファイルにインタプリタを適用する。
@@ -27,17 +22,22 @@ def apply(fileName, interpreter) :
 # 条件入力
 fileName = ""
 interpreterNo = 1
-if Common.count_args() < 2 :
+if Common.count_args() == 0 :
     fileName = Common.readline("対象のファイル・フォルダを指定してください。> ")
     print(INTERPRETERS)
-    interpreterNo = int(Common.readline("番号を選択してください。> "))
+    interpreterNo = Common.readline("番号を選択してください。> ")
 else :
     fileName = Common.args(0)
-    interpreterNo = int(Common.args(1))
-
-
+    if Common.count_args() > 1:
+       interpreterNo = Common.args(1)
+    else:
+      print(INTERPRETERS)
+      interpreterNo = Common.readline("番号を選択してください。> ")
+if interpreterNo == "9":
+    print("処理が取り消されました。")
+    exit(1)
 interpreterLines = INTERPRETERS.split('\n')
-interpreter = Text.substring(interpreterLines[interpreterNo - 1], 3)
+interpreter = Text.substring(interpreterLines[int(interpreterNo) - 1], 3)
 print(interpreter + " が " + fileName + " に適用されます。")
 a = Common.readline("実行しますか？ (y/n)")
 if a != 'y' :
